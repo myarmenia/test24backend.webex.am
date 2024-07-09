@@ -40,8 +40,9 @@ Route::group([
     Route::post('me', [AuthController::class, 'me']);
 
     Route::group(["middleware"=> ['setlang']],function ($router) {
+
         Route::group(["middleware"=> ['apiAuth']],function ($router) {
-        Route::get('get-categories', GetCategoryController::class);
+
         Route::post('test',TestController::class);
 
 
@@ -51,6 +52,7 @@ Route::group([
 });
 
 Route::group(["middleware"=> ['setlang']],function ($router) {
+    Route::get('get-categories', GetCategoryController::class);
 
     Route::get('test/{link}',GetTestViaLinkController::class);
     Route::post('get-test-result',UserPastedTestController::class);
