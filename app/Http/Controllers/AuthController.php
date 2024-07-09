@@ -22,6 +22,7 @@ class AuthController extends BaseController
             return response()->json(['error' => 'Unauthorized'], 401);
         }
 
+
         return $this->respondWithToken($token);
 
 
@@ -34,6 +35,7 @@ class AuthController extends BaseController
      */
     public function me()
     {
+
         return response()->json(auth()->user());
     }
 
@@ -71,7 +73,9 @@ class AuthController extends BaseController
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
-            'expires_in' => auth()->factory()->getTTL() * 60
+            'expires_in' => auth()->factory()->getTTL() * 60,
+            "user"=>$this->me()
         ]);
+  
     }
 }
