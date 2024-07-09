@@ -2,36 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\API\BaseController;
 use App\Models\User;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
 use Illuminate\Http\Request;
 
-class AuthController extends Controller
+class AuthController extends BaseController
 {
     public function login(Request $request)
     {
 
 
-        $credentials = request(['nickname_or_email', 'password']);
+        $fieldType = filter_var($request->nickname_or_email, FILTER_VALIDATE_EMAIL) ? 'email' : 'nickname';
 
-        // dd($credentials);
-        // if (! $token = auth()->attempt($credentials)) {
-        //     return response()->json(['error' => 'Unauthorized'], 401);
-        // }
+        $credentials = [$fieldType=>$request->nickname_or_email, 'password'=>$request->password];
 
-        // return $this->respondWithToken($token);
-        $fieldType = filter_var($credentials['nickname_or_email'], FILTER_VALIDATE_EMAIL) ? 'email' : 'nickname';
-
-        $user = User::where($fieldType, $credentials['nickname_or_email'])->first();
-
-        if($user){
-
-            $token = JWTAuth::fromUser($user);
-            return $this->respondWithToken($token);
-        }else{
-            dd('chka');
+        if (! $token = auth()->attempt($credentials)) {
+            return response()->json(['error' => 'Unauthorized'], 401);
         }
+
+        return $this->respondWithToken($token);
+
 
     }
 
