@@ -34,24 +34,7 @@ trait StoreTrait{
 
       if ($item) {
 
-        if ($file = $request['file'] ?? null) {
 
-            $convert_image = $this->base64($item->id,$file['path']);
-
-            if($convert_image==false){
-
-              return false;
-
-            }
-
-        //   $path = FileUploadService::upload($request['photo'], $table_name . '/' . $item->id);
-                $create_file=File::create([
-                    'test_id' => $item->id,
-                    'name' => $convert_image['name'],
-                    'path' => 'public/'.$convert_image['path'],
-                ]);
-
-        }
 
         if($request['grade_type']){
 
@@ -59,6 +42,7 @@ trait StoreTrait{
 
         }
         if($request['question']){
+
             $this->question($item->id,$request['question']);
         }
 
@@ -124,15 +108,37 @@ $image_file = base64_decode($file_base_explode[1]);
 
   }
   public function question($test_id,$questions){
-
+// dd($test_id,$questions);
     foreach($questions as $question){
 
         $question['test_id'] = $test_id;
 
-        $data = array_diff_key($question, array_flip(['answer_option']));;
+        unset($question['file']);
+
+        $data = array_diff_key($question, array_flip(['answer_option']));
 
         $create_question = Question::create($data);
         if($create_question){
+
+            if($file = $question['file'] ?? null) {
+                dd($file);
+
+                $convert_image = $this->base64($create_question->id,$file['path']);
+
+                if($convert_image==false){
+
+                  return false;
+
+                }
+
+                //   $path = FileUploadService::upload($request['photo'], $table_name . '/' . $item->id);
+                    $create_file=File::create([
+                        'test_id' => $create_question->id,
+                        'name' => $convert_image['name'],
+                        'path' => 'public/'.$convert_image['path'],
+                    ]);
+
+            }
 
             foreach($question['answer_option'] as $option){
                 $option['question_id'] = $create_question->id;
