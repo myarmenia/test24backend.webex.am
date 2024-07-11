@@ -19,7 +19,7 @@ class AuthController extends BaseController
         $credentials = [$fieldType=>$request->nickname_or_email, 'password'=>$request->password];
 
         if (! $token = auth()->attempt($credentials)) {
-            return response()->json(['error' => 'Unauthorized'], 401);
+            return response()->json(['error' => __('messages.no_such_user_found')], 401);
         }
 
 
@@ -76,6 +76,6 @@ class AuthController extends BaseController
             'expires_in' => auth()->factory()->getTTL() * 60,
             "user"=>$this->me()
         ]);
-  
+
     }
 }
