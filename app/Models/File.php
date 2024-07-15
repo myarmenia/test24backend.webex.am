@@ -9,4 +9,7 @@ class File extends Model
 {
     use HasFactory;
     protected $guarded=[];
+    public function questions(){
+        return $this->belongsTo(Question::class,'question_id');
+    }
 }

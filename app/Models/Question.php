@@ -18,4 +18,7 @@ class Question extends Model
 
         return $this->hasMany(AnswerOption::class);
     }
+    public function files(){
+        return $this->hasMany(File::class);
+    }
 }
