@@ -77,7 +77,7 @@ if(in_array($extention, ['jpeg','jpg','png']))
 $name = time().rand(1,100).'.'.$extention;
 // via  file_put_contents  we save the data which is a data:image/jpeg;base64, and in the folder we save data via concating  name
 // dd(base64_decode($file_base_explode[1]));
-$path='test/'.$id.'/'.$name;
+$path='question/'.$id.'/'.$name;
 
 $image_file = base64_decode($file_base_explode[1]);
 // file_put_contents('test/'.$id.'/'.$name, base64_decode($file_base_explode[1]));
@@ -113,15 +113,17 @@ $image_file = base64_decode($file_base_explode[1]);
 
         $question['test_id'] = $test_id;
 
-        unset($question['file']);
+        // unset($question['file']);
 
         $data = array_diff_key($question, array_flip(['answer_option']));
+
+        unset($data['file']);
 
         $create_question = Question::create($data);
         if($create_question){
 
             if($file = $question['file'] ?? null) {
-                dd($file);
+
 
                 $convert_image = $this->base64($create_question->id,$file['path']);
 
@@ -133,7 +135,7 @@ $image_file = base64_decode($file_base_explode[1]);
 
                 //   $path = FileUploadService::upload($request['photo'], $table_name . '/' . $item->id);
                     $create_file=File::create([
-                        'test_id' => $create_question->id,
+                        'question_id' => $create_question->id,
                         'name' => $convert_image['name'],
                         'path' => 'public/'.$convert_image['path'],
                     ]);
