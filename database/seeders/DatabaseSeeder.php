@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             CategoriesTableSeeder::class,
             AnswerTypeSeeder::class,
             AnswerTypeTranslationSeeder::class,
+            GradeSeede::class
         ]);
         // \App\Models\User::factory(10)->create();
 

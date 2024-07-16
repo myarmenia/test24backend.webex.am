@@ -4,6 +4,7 @@ use App\Http\Controllers\API\AnswerTypesController;
 use App\Http\Controllers\API\GetAllQuestionariesController;
 use App\Http\Controllers\API\GetAllTestController;
 use App\Http\Controllers\API\GetCategoryController;
+use App\Http\Controllers\API\GetGradeController;
 use App\Http\Controllers\API\GetTestViaLinkController;
 use App\Http\Controllers\API\TestController;
 use App\Http\Controllers\API\UserPastedTestController;
@@ -56,9 +57,10 @@ Route::group([
 Route::group(["middleware"=> ['setlang']],function ($router) {
     Route::get('get-categories', GetCategoryController::class);
     Route::get('get-answer-types', [AnswerTypesController::class,'index']);
+    Route::get('get-grades',[GetGradeController::class,'index']);
 
     Route::get('test/{link}',GetTestViaLinkController::class);
-    // not auth user pass test 
+    // not auth user pass test
     Route::post('pass-test',UserPastedTestController::class);
 
     Route::get('get-all-tests',[GetAllTestController::class,'index']);
