@@ -15,22 +15,28 @@ class UserPastedTestController extends BaseController
     public function __invoke(Request $request){
         try{
 
+// dd($request['test_link']);
             $test = Test::where('link',$request['test_link'])->first();
+
+
             $question = Question::where('test_id',$test->id)->with('answer_options')->get();
-            $count = 0;
-            $get_results = $request['question'];
+            // dd($request['true_answer_option']);
 
-            $trueAnswerOptions = array_map(function($item) {
-                return $item['true_answer_option'];
-            }, $get_results);
+            // $get_results = $request['question'];
 
+            // $trueAnswerOptions = array_map(function($item) {
+            //     return $item['true_answer_option'];
+            // }, $get_results);
 
-            $flattenedOptions = array_merge(...$trueAnswerOptions);
+            // // dd($trueAnswerOptions);
+            // $flattenedOptions = array_merge(...$trueAnswerOptions);
+            // dd($flattenedOptions);
+            // $flattenedOptions=[130,132];
+            // $total = AnswerOption::whereIn('id',$flattenedOptions)->sum('mark');
+            $total = AnswerOption::whereIn('id',$request['true_answer_option'])->sum('mark');
+// dd($total);
 
-            $total = AnswerOption::whereIn('id',$flattenedOptions)->sum('mark');
-
-
-            $test_grade_type = TestGradeType::where('test_id',60)->whereRaw('? BETWEEN low_grade AND high_grade', [$total])->first();
+            $test_grade_type = TestGradeType::where('test_id',$test->id)->whereRaw('? BETWEEN low_grade AND high_grade', [$total])->first();
 
             if($test_grade_type!=null){
 

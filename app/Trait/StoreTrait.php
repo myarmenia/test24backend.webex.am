@@ -33,9 +33,6 @@ trait StoreTrait{
       $item = $model::create($data);
 
       if ($item) {
-
-
-
         if($request['grade_type']){
 
             $this->grade_type($item->id,$request['grade_type']);
@@ -77,11 +74,12 @@ if(in_array($extention, ['jpeg','jpg','png']))
 $name = time().rand(1,100).'.'.$extention;
 // via  file_put_contents  we save the data which is a data:image/jpeg;base64, and in the folder we save data via concating  name
 // dd(base64_decode($file_base_explode[1]));
-$path='question/'.$id.'/'.$name;
+$path='public/question/'.$id.'/'.$name;
 
 $image_file = base64_decode($file_base_explode[1]);
 // file_put_contents('test/'.$id.'/'.$name, base64_decode($file_base_explode[1]));
     Storage::disk('local')->put($path,$image_file);
+
     $file_path_array=[];
     $file_path_array['name'] = $name;
     $file_path_array['path'] = $path;
@@ -137,7 +135,7 @@ $image_file = base64_decode($file_base_explode[1]);
                     $create_file=File::create([
                         'question_id' => $create_question->id,
                         'name' => $convert_image['name'],
-                        'path' => 'public/'.$convert_image['path'],
+                        'path' => $convert_image['path'],
                     ]);
 
             }

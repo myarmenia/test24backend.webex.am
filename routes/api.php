@@ -58,7 +58,8 @@ Route::group(["middleware"=> ['setlang']],function ($router) {
     Route::get('get-answer-types', [AnswerTypesController::class,'index']);
 
     Route::get('test/{link}',GetTestViaLinkController::class);
-    Route::post('get-test-result',UserPastedTestController::class);
+    // not auth user pass test 
+    Route::post('pass-test',UserPastedTestController::class);
 
     Route::get('get-all-tests',[GetAllTestController::class,'index']);
 
