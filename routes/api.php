@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\AnswerTypesController;
 use App\Http\Controllers\API\GetAllQuestionariesController;
 use App\Http\Controllers\API\GetAllTestController;
 use App\Http\Controllers\API\GetCategoryController;
@@ -43,7 +44,7 @@ Route::group([
 
 
         Route::group(["middleware"=> ['apiAuth']],function ($router) {
-
+// creting test
         Route::post('test',TestController::class);
 
 
@@ -54,6 +55,7 @@ Route::group([
 
 Route::group(["middleware"=> ['setlang']],function ($router) {
     Route::get('get-categories', GetCategoryController::class);
+    Route::get('get-answer-types', [AnswerTypesController::class,'index']);
 
     Route::get('test/{link}',GetTestViaLinkController::class);
     Route::post('get-test-result',UserPastedTestController::class);
