@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\ContactController;
 use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\GoogleController;
 use App\Services\FileUploadService;
@@ -31,3 +32,6 @@ Route::get('auth/google/call-back', [GoogleController::class, 'handleGoogleCallb
 
 Route::get('get-file', [FileUploadService::class, 'get_file'])->name('get-file');
 
+
+
+Route::get('get-email',[ContactController::class,'show']);

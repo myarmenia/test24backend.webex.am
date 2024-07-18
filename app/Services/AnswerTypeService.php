@@ -7,6 +7,7 @@ class AnswerTypeService implements GetOptionServiceInterface
 {
     public function getOption()
     {
+
         return AnswerType::all();
     }
 

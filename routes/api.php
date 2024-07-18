@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\AnswerTypesController;
+use App\Http\Controllers\API\ContactController;
 use App\Http\Controllers\API\GetAllQuestionariesController;
 use App\Http\Controllers\API\GetAllTestController;
 use App\Http\Controllers\API\GetCategoryController;
@@ -64,6 +65,8 @@ Route::group(["middleware"=> ['setlang']],function ($router) {
     Route::post('pass-test',UserPastedTestController::class);
 
     Route::get('get-all-tests',[GetAllTestController::class,'index']);
+    Route::post('send-email',[ContactController::class,'index']);
+
 
 });
 
