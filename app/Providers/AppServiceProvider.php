@@ -24,7 +24,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $this->app->bind(GetOptionServiceInterface::class, AnswerTypeService::class);
+    
         $this->app->bind(GetOptionServiceInterface::class, GradeService::class);
         $this->app->bind(SendMessageInterface::class, ContactService::class);
     }

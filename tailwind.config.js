@@ -13,6 +13,7 @@ export default {
         colors: {
             'custom-white': '#fff',
             'custom-pink': '#cea0e9',
+            'customRose':'#f22d65'
           },
       },
   },

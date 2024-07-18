@@ -15,6 +15,7 @@ class GetGradeController extends BaseController
         $this->gradeService = $gradeService;
     }
     public function index(){
+        
         $data=$this->gradeService->getOption();
 
         return $this->sendResponse(GradeResource::collection($data),'success');

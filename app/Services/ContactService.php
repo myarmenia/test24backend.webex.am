@@ -12,21 +12,16 @@ class ContactService implements  SendMessageInterface
     public function sendMessage($request){
 
             $test_categories = Category::with('category_translations')->get();;
-// dd($test_categories);
-            return  Mail::to('armine@webex.am')->send(new MailToOrganization([
+
+            return  Mail::to('armine.khachatryan1982@gmail.com')->send(new MailToOrganization([
                 "name" => $request->name,
                 "email" => $request->email,
                 "message" => $request->message,
-                "educational_test" => $test_categories
+                "test_categories" => $test_categories,
+                "test_types"=> __('messages.test_types')
             ]
 
             ));
-            // dd($response);
-
-
-        // return  $this->sendResponse( $response,'Ձեր պատասխանը հաջողությամբ ուղարկվել է');
-
-
 
     }
 }

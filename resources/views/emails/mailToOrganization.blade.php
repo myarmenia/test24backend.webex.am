@@ -9,38 +9,33 @@
     <title>Document</title>
 </head>
 
-<body>
-    <div class="container">
+<body >
+    <div class="container ">
 
         <section class=" flex flex-col  items-center">
-            <div class="w-[400px]  bg-gradient-to-r from-custom-white to-custom-pink border-2">
+            <div class="w-[400px]  bg-gradient-to-r from-custom-white to-custom-pink  text-pink-600">
                 <div class="custom_bg h-[250px] w-[400px]  bg-contain bg-no-repeat bg-center"></div>
-                    <div>
-                        <h2 class="text-center text-blue-600">Message from user </h2>
-                        <div class="text-blue-600 ">
-                            <p class="p-8 border-2 border-dotted">name:</p>
-                            <p class="p-8 border-2 border-dotted">email:</p>
-                            <p class="p-8 border-2 border-dotted">message: </p>
+                    <div class="p-2">
+                        <h2 class="text-center ">Message from user </h2>
+                        <div>
+                            <p class="px-8 mb-1 border-2 border-dotted">name: {{ $details['name'] }}</p>
+                            <p class="px-8 mb-1 border-2 border-dotted">email: {{ $details['email'] }}</p>
+                            <p class="px-8 mb-1 border-2 border-dotted">message: {{ $details['message'] }} </p>
                         </div>
                     </div>
-{{ dd($details['educational_test']) }}
-                <div class="grid gap-4 grid-cols-2 grid-rows-3 border-2 h-[200px]">
-                        @php
-                        foreach ($details['educational_test'] as $key => $value) {
-                        @endphp
-                        @php   # code...
-                        }
+                    <div>
+                        <h2 class="text-center p-5">{{ $details['test_types'] }}</h2>
+                    </div>
 
-                        @endphp
-                    <div class="w-1/2 border-2 h-[100px] justify-center rounded-md">educational hh</div>
-                    <div class="w-1/2 border-2 h-[100px] justify-center rounded-md">educational</div>
-                    <div class="w-1/2 border-2 h-[100px] justify-center rounded-md">educational</div>
-                    <div class="w-1/2 border-2 h-[100px] justify-center rounded-md">educational</div>
-                </div>
-                <div class ="flex justify-center border-2">
-                    <p>Our Contact </p>
-                    <p> </p>
-                </div>
+                    <div class="grid gap-4 grid-cols-2 ">
+                            @foreach ($details['test_categories'] as $value )
+                                <button class=" border-2 rounded-md py-1">{{$value->translation(app()->getLocale())->text }}</button>
+                            @endforeach
+                    </div>
+
+            </div>
+            <div class ="flex justify-center text-pink-600">
+                <h1 class ="p-2">Best regards</h1>
             </div>
         </section>
 
