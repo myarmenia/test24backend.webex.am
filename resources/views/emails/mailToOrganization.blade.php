@@ -37,6 +37,7 @@
             <div class ="flex justify-center text-pink-600">
                 <h1 class ="p-2">Best regards</h1>
             </div>
+            {{ dd(11) }}
         </section>
 
         // {{-- <div class="custom_bg bg-cover bg-center h-screen "> --}}
