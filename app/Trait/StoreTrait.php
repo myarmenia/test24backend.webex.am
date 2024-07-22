@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Illuminate\Support\Arr;
 
 trait StoreTrait{
 
@@ -109,21 +110,30 @@ $image_file = base64_decode($file_base_explode[1]);
 // dd($test_id,$questions);
     foreach($questions as $question){
 
+
+
+        $except_path = Arr::except($question, ['path']);
+
         $question['test_id'] = $test_id;
 
         // unset($question['file']);
 
         $data = array_diff_key($question, array_flip(['answer_option']));
+        $data = array_diff_key($data, array_flip(['path']));
+// dd($data);
 
-        unset($data['file']);
+
+        // unset($data['file']);
 
         $create_question = Question::create($data);
+        // dd($create_question);
         if($create_question){
 
-            if($file = $question['file'] ?? null) {
+            if($file = $question['path'] ?? null) {
+                // dd($file);
 
 
-                $convert_image = $this->base64($create_question->id,$file['path']);
+                $convert_image = $this->base64($create_question->id,$file);
 
                 if($convert_image==false){
 

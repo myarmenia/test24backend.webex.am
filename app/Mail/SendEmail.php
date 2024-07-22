@@ -24,7 +24,7 @@ class SendEmail extends Mailable
        $this->details = $details;
 
    }
-   
+
 
     /**
      * Get the message envelope.
@@ -42,7 +42,8 @@ class SendEmail extends Mailable
     public function content(): Content
     {
         return new Content(
-            markdown: 'mail.emails.sendemail',
+            markdown: 'vendor.mail.html.my_template',
+            with: ['background' => asset('images/test_background.png')]
         );
     }
 
