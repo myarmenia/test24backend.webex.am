@@ -20,6 +20,7 @@ class TestResource extends JsonResource
             "name"=>$this->name,
             "time_in_seconds"=>$this->time_in_seconds,
             "question_count"=>$this->question_count,
+            "link"=>$this->link,
             "answer_type_id"=>$this->answer_type_id,
             "answer_type_name" =>$this->answer_types->translation(app()->getLocale())->text,
             "questions"=>QuestionResource::collection($this->questions)
