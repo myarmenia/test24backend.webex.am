@@ -61,4 +61,7 @@ class User extends Authenticatable implements MustVerifyEmail,JWTSubject
     {
         return [];
     }
+    public function tests(){
+        return $this->hasMany(Test::class);
+    }
 }

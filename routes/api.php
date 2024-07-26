@@ -49,7 +49,7 @@ Route::group([
         Route::group(["middleware"=> ['apiAuth']],function ($router) {
             // creting test
         Route::post('test',TestController::class);
-        Route::get('tests-auth',GetAuthAllTestController::class);
+        Route::get('tests-auth',[GetAuthAllTestController::class,'index']);
 
 
         });

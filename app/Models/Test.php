@@ -26,8 +26,9 @@ class Test extends Model
     public function questions(){
         return $this->hasMany(Question::class);
     }
-    public function translation($lang){
-dd($this);
-        return $this->hasOne(AnswerTypeTranslation::class)->where('lang', $lang)->first();
-     }
+    public function users(){
+        return $this->belongsTo(User::class,'user_id');
+
+    }
+
 }

@@ -4,12 +4,12 @@ namespace App\Services;
 use App\Abstract\OptionAbstractClass;
 use App\Models\AnswerType;
 
-class AnswerTypeService extends OptionAbstractClass
+class GetAuthUserTestsService extends OptionAbstractClass
 {
     public function getOption()
     {
 
-        return AnswerType::all();
+        return auth()->user()->tests()->orderBy('created_at', 'desc')->get();
     }
 
 }
