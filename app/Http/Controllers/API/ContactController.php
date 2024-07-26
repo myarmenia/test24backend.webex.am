@@ -16,7 +16,7 @@ class ContactController extends BaseController
     public function index(Request $request){
         try{
 
-            $response=$this->contactService->sendMessage($request);
+            $response = $this->contactService->sendMessage($request);
 
             return $this->sendResponse($response,'Ձեր պատասխանը հաջողությամբ ուղարկվել է');
         }

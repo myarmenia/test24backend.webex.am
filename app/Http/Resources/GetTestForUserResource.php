@@ -24,6 +24,7 @@ class GetTestForUserResource extends JsonResource
         "question_count" => $this->question_count,
         "answer_type_id" => $this->answer_type_id,
         "answer_type_name" =>$this->answer_types->translation(app()->getLocale())->text,
+        "route"=>url()->current(),
         "questions"=>QuestionResource::collection($this->questions)
         ];
     }
