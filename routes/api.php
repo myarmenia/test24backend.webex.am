@@ -4,6 +4,7 @@ use App\Http\Controllers\API\AnswerTypesController;
 use App\Http\Controllers\API\ContactController;
 use App\Http\Controllers\API\GetAllQuestionariesController;
 use App\Http\Controllers\API\GetAllTestController;
+use App\Http\Controllers\API\GetAuthAllTestController;
 use App\Http\Controllers\API\GetCategoryController;
 use App\Http\Controllers\API\GetGradeController;
 use App\Http\Controllers\API\GetTestViaLinkController;
@@ -46,8 +47,9 @@ Route::group([
 
 
         Route::group(["middleware"=> ['apiAuth']],function ($router) {
-// creting test
+            // creting test
         Route::post('test',TestController::class);
+        Route::get('tests-auth',GetAuthAllTestController::class);
 
 
         });
