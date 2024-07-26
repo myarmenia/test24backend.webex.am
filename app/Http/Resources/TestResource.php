@@ -23,7 +23,8 @@ class TestResource extends JsonResource
             "link"=>$this->link,
             "answer_type_id"=>$this->answer_type_id,
             "answer_type_name" =>$this->answer_types->translation(app()->getLocale())->text,
-            "questions"=>QuestionResource::collection($this->questions)
+            "questions"=>QuestionResource::collection($this->questions),
+            "route"=> url('').'/api/test/'.$this->link
         ];
     }
 }
