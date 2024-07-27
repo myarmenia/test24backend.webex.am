@@ -9,7 +9,7 @@ class DeleteRecordService
 
     public static  function deleteRecord($id,$table){
 
-        $query = DB::table($table)->where(['id', '=', $id,'user_id'=>Auth::id()])->delete();
+        $query = DB::table($table)->where(['id'=> $id,'user_id'=>Auth::id()])->delete();
 
         return true;
     }
