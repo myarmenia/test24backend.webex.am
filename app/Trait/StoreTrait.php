@@ -47,7 +47,7 @@ trait StoreTrait{
         $link_code = Str::random(10);
         $item ->link = $link_code;
         $item->save();
-        $returned_link = env('APP_URL')."/test/".$link_code;
+        $returned_link = url('')."/test/".$link_code;
 
          return $returned_link;
 
