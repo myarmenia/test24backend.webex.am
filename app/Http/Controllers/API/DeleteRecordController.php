@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use App\Services\GetAuthUserTestsService;
 use Illuminate\Support\Facades\Auth;
 
-class DeleteRecordController extends Controller
+class DeleteRecordController extends BaseController
 {
     public $getAuthUserTestsService;
 
@@ -22,7 +22,7 @@ class DeleteRecordController extends Controller
 
        public function delete($id){
         try{
-            
+
             $table="tests";
 
             $data=DeleteRecordService::deleteRecord($id,$table);
