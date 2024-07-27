@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\AnswerTypesController;
 use App\Http\Controllers\API\ContactController;
+use App\Http\Controllers\API\DeleteRecordController;
 use App\Http\Controllers\API\GetAllQuestionariesController;
 use App\Http\Controllers\API\GetAllTestController;
 use App\Http\Controllers\API\GetAuthAllTestController;
@@ -50,6 +51,7 @@ Route::group([
             // creting test
         Route::post('test',TestController::class);
         Route::get('tests-auth',[GetAuthAllTestController::class,'index']);
+        Route::delete('delete/{id}',[DeleteRecordController::class,'delete']);
 
 
         });
