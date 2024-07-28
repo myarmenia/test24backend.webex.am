@@ -24,9 +24,9 @@
         <div class="p-2">
             <h2 class="text-center ">{{ __('messages.message_from_user')}} </h2>
             <div>
-                <p class="px-8 mb-1 border-2 border-dotted">name: {{ $details['name'] }}</p>
-                <p class="px-8 mb-1 border-2 border-dotted">email: {{ $details['email'] }}</p>
-                <p class="px-8 mb-1 border-2 border-dotted">message: {{ $details['message'] }} </p>
+                <p class="px-8 mb-1 border-2 border-dotted">{{ __('messages.name') }}: {{ $details['name'] }}</p>
+                <p class="px-8 mb-1 border-2 border-dotted">{{ __('messages.email') }}: {{ $details['email'] }}</p>
+                <p class="px-8 mb-1 border-2 border-dotted">{{ __('messages.message') }}: {{ $details['message'] }} </p>
             </div>
         </div>
     </section>
