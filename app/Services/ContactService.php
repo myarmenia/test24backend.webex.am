@@ -12,7 +12,7 @@ class ContactService implements  SendMessageInterface
 {
     public function sendMessage($request){
 
-            $test_categories = Category::with('category_translations')->get();;
+            $test_categories = Category::with('category_translations')->get();
             return  Mail::to('armine.khachatryan1982@gmail.com')->send(new SendEmail([
             // return  Mail::to('armine.khachatryan1982@gmail.com')->send(new MailToOrganization([
                 "name" => $request->name,

@@ -20,7 +20,7 @@ class QuestionResource extends JsonResource
             "id" => $this->id,
             "test_id" => $this->test_id,
             "text" => $this->text,
-            "path"=>isset($this->path) ? url('').Storage::disk('local')->url($this->files->path) : null,
+            "path"=>isset($this->files->path) ? url('').Storage::disk('local')->url($this->files->path) : null,
             "answer_options" =>AnswerOptionsResource::collection($this->answer_options),
         ];
     }
