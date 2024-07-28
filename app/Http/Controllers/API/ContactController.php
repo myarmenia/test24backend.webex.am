@@ -18,7 +18,7 @@ class ContactController extends BaseController
 
             $response = $this->contactService->sendMessage($request);
 
-            return $this->sendResponse($response,'Ձեր պատասխանը հաջողությամբ ուղարկվել է');
+            return $this->sendResponse($response,__('messages.your_email_has_been_sent_successfully'));
         }
         catch (\Exception $e) {
 
