@@ -22,7 +22,7 @@
     {{-- <img src="{{ public_path().'/images/gorcka.png' }}"> --}}
 
         <div class="p-2">
-            <h2 class="text-center ">__('messages.message_from_user') </h2>
+            <h2 class="text-center ">{{ __('messages.message_from_user')}} </h2>
             <div>
                 <p class="px-8 mb-1 border-2 border-dotted">name: {{ $details['name'] }}</p>
                 <p class="px-8 mb-1 border-2 border-dotted">email: {{ $details['email'] }}</p>
