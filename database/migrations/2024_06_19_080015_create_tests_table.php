@@ -18,10 +18,12 @@ return new class extends Migration
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade')->onUpdate('cascade');
             $table->string('name');
+            $table->string('description');
             $table->integer('time_in_seconds')->nullable();
             $table->integer('question_count')->nullable();
             $table->unsignedBigInteger('answer_type_id');
             $table->foreign('answer_type_id')->references('id')->on('answer_types')->onDelete('cascade')->onUpdate('cascade');
+
             $table->string('link')->nullable();
             $table->timestamps();
         });
