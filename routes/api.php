@@ -9,6 +9,7 @@ use App\Http\Controllers\API\GetAuthAllTestController;
 use App\Http\Controllers\API\GetCategoryController;
 use App\Http\Controllers\API\GetGradeController;
 use App\Http\Controllers\API\GetTestViaLinkController;
+use App\Http\Controllers\API\TestAuthController;
 use App\Http\Controllers\API\TestController;
 use App\Http\Controllers\API\UserPastedTestController;
 use App\Http\Controllers\AuthController;
@@ -52,6 +53,9 @@ Route::group([
         Route::post('test',TestController::class);
         Route::get('tests-auth',[GetAuthAllTestController::class,'index']);
         Route::delete('delete/{id}',[DeleteRecordController::class,'delete']);
+        Route::get('edit/{id}',[TestAuthController::class,'edit']);
+        Route::put('update/{id}',[TestAuthController::class,'update']);
+
 
 
         });

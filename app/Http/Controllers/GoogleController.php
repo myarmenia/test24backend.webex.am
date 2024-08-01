@@ -33,8 +33,8 @@ class GoogleController extends Controller
         $client->setClientSecret(env('GOOGLE_CLIENT_SECRET'));
         $payload = $client->verifyIdToken($token);
         $email = $payload['email'];
-
         $google_user = User::where('email', $email)->first();
+
         if($google_user==null){
 
             $googleUser = User::where('email', $email)->firstOrCreate([
@@ -44,10 +44,15 @@ class GoogleController extends Controller
                 'google_id' => $payload['sub'],
 
             ]);
+
             $token = JWTAuth::fromUser($googleUser);
-            return $this->respondWithToken($token);
+  
+            return response()->json(['success' => true, 'access_token' => $token, 'authUser' => $googleUser]);
+
+        }
 
     }
-}
+
+
 
 }

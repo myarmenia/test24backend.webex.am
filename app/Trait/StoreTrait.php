@@ -24,7 +24,7 @@ trait StoreTrait{
 // dd($data);
     $className = $this->model();
 // dd($className);
-    if (class_exists($className)) {
+    if(class_exists($className)) {
 
       $model = new $className;
       $relation_foreign_key = $model->getForeignKey();
@@ -141,8 +141,7 @@ $image_file = base64_decode($file_base_explode[1]);
 
                 }
 
-                //   $path = FileUploadService::upload($request['photo'], $table_name . '/' . $item->id);
-                    $create_file=File::create([
+                $create_file=File::create([
                         'question_id' => $create_question->id,
                         'name' => $convert_image['name'],
                         'path' => $convert_image['path'],

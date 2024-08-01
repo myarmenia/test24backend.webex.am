@@ -9,4 +9,8 @@ class TestGradeType extends Model
 {
     use HasFactory;
     protected $guarded=[];
+
+    public function tests(){
+        return $this->belongsTo(Test::class,'test_id');
+    }
 }
