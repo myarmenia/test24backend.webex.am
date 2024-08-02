@@ -17,10 +17,10 @@ class TestUpdateService{
         $test = auth()->user()->tests->find($id);
         // dd($test);
         // dd($data['questions']);
-        if($data['test_grade_types']){
+        // if($data['test_grade_types']){
 
-            $test_grade_types=$this->test_grade_types($data['test_grade_types'], $id);
-        }
+        //     $test_grade_types=$this->test_grade_types($data['test_grade_types'], $id);
+        // }
         if($data['questions']){
             $updated_question = $this->update_question($data['questions'], $id);
 
@@ -32,18 +32,18 @@ class TestUpdateService{
 
 
     }
-    public function test_grade_types($test_grade_types,$id){
+    // public function test_grade_types($test_grade_types,$id){
 
-        // dd($test_grade_types,$id);
-        foreach($test_grade_types as $key=>$value){
-            $test_grade_types=TestGradeType::find($key);
-            $test_grade_types->update($value);
-            $test_grade_types->save();
+    //     // dd($test_grade_types,$id);
+    //     foreach($test_grade_types as $key=>$value){
+    //         $test_grade_types=TestGradeType::find($key);
+    //         $test_grade_types->update($value);
+    //         $test_grade_types->save();
 
 
-        }
+    //     }
 
-    }
+    // }
     public function update_question($questions,$id){
 
         foreach($questions as $key=>$value){
@@ -54,10 +54,10 @@ class TestUpdateService{
             if($value['path']){
 
                 $file_path = $this->update_file_path($value['path'],$key);
-                // dd( $file_path);
+
                 if($value['answer_options']){
 
-                    // dd($value['answer_options']);
+
                     $answer_option=$this->question_answer_options($value['answer_options'] ,$key);
 
                 }
