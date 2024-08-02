@@ -47,6 +47,7 @@ class AuthController extends BaseController
     public function logout()
     {
         auth()->logout();
+       
 
         return response()->json(['message' => 'Successfully logged out']);
     }

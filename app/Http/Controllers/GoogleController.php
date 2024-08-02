@@ -31,8 +31,11 @@ class GoogleController extends Controller
 
         $client->setClientId(env('GOOGLE_CLIENT_ID'));
         $client->setClientSecret(env('GOOGLE_CLIENT_SECRET'));
+        // dd($client);
         $payload = $client->verifyIdToken($token);
+        // dd($payload);
         $email = $payload['email'];
+        // dd($email);
         $google_user = User::where('email', $email)->first();
 
         if($google_user==null){
@@ -46,10 +49,11 @@ class GoogleController extends Controller
             ]);
 
             $token = JWTAuth::fromUser($googleUser);
-  
+
             return response()->json(['success' => true, 'access_token' => $token, 'authUser' => $googleUser]);
 
         }
+
 
     }
 
