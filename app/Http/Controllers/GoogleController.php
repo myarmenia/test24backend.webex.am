@@ -40,7 +40,7 @@ class GoogleController extends Controller
 
         if($google_user==null){
 
-            $googleUser = User::where('email', $email)->firstOrCreate([
+            $google_user = User::where('email', $email)->firstOrCreate([
                 'name' => $payload['given_name'],
                 'surname' => $payload['family_name'],
                 'email' => $email,
@@ -48,11 +48,12 @@ class GoogleController extends Controller
 
             ]);
 
-            $token = JWTAuth::fromUser($googleUser);
 
-            return response()->json(['success' => true, 'access_token' => $token, 'authUser' => $googleUser]);
 
         }
+        $token = JWTAuth::fromUser($google_user);
+
+        return response()->json(['success' => true, 'access_token' => $token, 'authUser' => $google_user]);
 
 
     }
