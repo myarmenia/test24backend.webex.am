@@ -54,7 +54,7 @@ class TestUpdateService{
             $get_question->save();
             // dd($get_question);
             if($value['path']){
-                dd('path');
+    
                 $file_path = $this->update_file_path($value['path'],$key);
 
             }
@@ -103,13 +103,13 @@ class TestUpdateService{
     public function question_answer_options($answer_options,$id){
 
         foreach($answer_options as $key=>$value){
-
+// dd($value);
             $answer_options = AnswerOption::find($key);
 
             $answer_options->update($value);
             $answer_options->save();
             $answer_options = AnswerOption::find($key);
-          
+
         }
 
     }
