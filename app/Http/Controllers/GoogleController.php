@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Google_Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 use Laravel\Socialite\Facades\Socialite;
 use Tymon\JWTAuth\Facades\JWTAuth;
@@ -56,6 +57,13 @@ class GoogleController extends Controller
         return response()->json(['success' => true, 'access_token' => $token, 'authUser' => $google_user]);
 
 
+    }
+    public function logout()
+    {
+
+        Auth::logout();
+        dd(dd(Auth()->user()));
+        return redirect()->away('https://accounts.google.com/Logout');
     }
 
 

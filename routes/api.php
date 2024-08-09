@@ -45,7 +45,9 @@ Route::group([
         Route::post('logout', [AuthController::class,'logout']);
         Route::post('refresh', [AuthController::class,'refresh']);
         Route::post('me', [AuthController::class, 'me']);
-        
+        // ==============
+        Route::get('google/logout', [GoogleController::class, 'logout'])->name('logout');
+
 
 
 
@@ -81,6 +83,7 @@ Route::group(["middleware"=> ['setlang']],function ($router) {
 
 Route::get('google', [GoogleController::class, 'redirectToGoogle'])->name('google-auth');
 Route::post('auth/google/call-back', [GoogleController::class, 'handleGoogleCallback']);
+
 
 
 

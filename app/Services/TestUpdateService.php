@@ -21,6 +21,7 @@ class TestUpdateService{
 
         //     $test_grade_types=$this->test_grade_types($data['test_grade_types'], $id);
         // }
+
         if($data['questions']){
             $updated_question = $this->update_question($data['questions'], $id);
 
@@ -45,22 +46,22 @@ class TestUpdateService{
 
     // }
     public function update_question($questions,$id){
-
+// dd($questions,$id);
         foreach($questions as $key=>$value){
 
             $get_question=Question::find($key);
             $get_question->text=$value['text'];
             $get_question->save();
+            // dd($get_question);
             if($value['path']){
-
+                dd('path');
                 $file_path = $this->update_file_path($value['path'],$key);
 
-                if($value['answer_options']){
+            }
+            if($value['answer_options']){
 
 
-                    $answer_option=$this->question_answer_options($value['answer_options'] ,$key);
-
-                }
+                 $answer_option = $this->question_answer_options($value['answer_options'] ,$key);
 
             }
 
@@ -70,19 +71,19 @@ class TestUpdateService{
 
     public  function update_file_path($path,$question_id){
 
-            $file = File::where('question_id', $question_id)->first();
+        $file = File::where('question_id', $question_id)->first();
 
-            if($file){
-                if (Storage::exists( $file->path)) {
+        if($file){
+            if (Storage::exists( $file->path)) {
 
-                    Storage::delete($file->path);
+                Storage::delete($file->path);
 
-                    $file->delete();
-                  }
-            }
+                $file->delete();
+                }
+        }
 
 
-            $table_name = "question";
+        $table_name = "question";
             $convert_image = FileUploadService::base64($question_id,$path);
 
             if($convert_image==false){
@@ -98,12 +99,6 @@ class TestUpdateService{
                   ]);
               return $create_file->id;
 
-
-
-
-
-
-
     }
     public function question_answer_options($answer_options,$id){
 
@@ -113,7 +108,8 @@ class TestUpdateService{
 
             $answer_options->update($value);
             $answer_options->save();
-
+            $answer_options = AnswerOption::find($key);
+          
         }
 
     }
