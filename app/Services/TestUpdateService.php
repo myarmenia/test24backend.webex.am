@@ -54,7 +54,7 @@ class TestUpdateService{
             $get_question->save();
             // dd($get_question);
             if($value['path']){
-    
+
                 $file_path = $this->update_file_path($value['path'],$key);
 
             }
@@ -97,6 +97,7 @@ class TestUpdateService{
                       'name' => $convert_image['name'],
                       'path' => $convert_image['path'],
                   ]);
+                 
               return $create_file->id;
 
     }
